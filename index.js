@@ -19,12 +19,13 @@ export default {
 			utils.path.extname(url).includes('.mpeg')
 		);
 	},
-	async load(url) {
+	async load(url, resolvedAsset) {
 		return new Promise((resolve, reject) => {
 			const howl = new Howl({
 				src: [url],
 				onload: () => resolve(howl),
 				onloaderror: (id, message) => reject(message),
+				sprite: resolvedAsset.data.sprite
 			});
 		});
 	},
